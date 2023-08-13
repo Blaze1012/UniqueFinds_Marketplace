@@ -23,7 +23,7 @@ function Login() {
       if (response.success) {
         message.success(response.message);
         localStorage.setItem("token", response.data);
-        window.location.href = "http://localhost:3000/";
+        navigate("/");
       } else throw new Error(response.message);
     } catch (error) {
       dispatch(SetLoader(false));
