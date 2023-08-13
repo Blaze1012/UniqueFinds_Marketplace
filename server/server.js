@@ -14,7 +14,11 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 // parse application/json
 app.use(bodyParser.json());
 
