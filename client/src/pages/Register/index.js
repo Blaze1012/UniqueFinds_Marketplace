@@ -40,7 +40,7 @@ function Register() {
   }, []);
 
   return (
-    <div className="h-screen bg-primary flex justify-center items-center">
+    <div className="h-screen bg-primary flex justify-center items-center bg-[url('https://res.cloudinary.com/dufl26uv9/image/upload/f_auto,q_auto/yu0qsddq7onkjkvdv7yb')] bg-cover bg-opacity-25">
       <div className="bg-white p-5 rounded w-[450px]">
         <h2 className="text-primary text-2xl">
           UniqueFinds <span className="text-gray-400 text-2xl">- REGISTER</span>
