@@ -6,7 +6,7 @@ import { axiosInstance } from "./axiosInstance";
 export const AddProduct = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      "http://localhost:5000/api/products/add-product",
+      "/api/products/add-product",
       payload
     );
 
@@ -21,7 +21,7 @@ export const AddProduct = async (payload) => {
 export const GetProducts = async (filters) => {
   try {
     const response = await axiosInstance.post(
-      "http://localhost:5000/api/products/get-products",
+      "/api/products/get-products",
       filters
     );
 
@@ -35,7 +35,7 @@ export const GetProducts = async (filters) => {
 export const EditProduct = async (id, payload) => {
   try {
     const response = await axiosInstance.put(
-      `http://localhost:5000/api/products/edit-product/${id}`,
+      `/api/products/edit-product/${id}`,
       payload
     );
 
@@ -50,7 +50,7 @@ export const EditProduct = async (id, payload) => {
 export const GetProductById = async (id) => {
   try {
     const response = await axiosInstance.get(
-      `http://localhost:5000/api/products/get-product-by-id/${id}`
+      `/api/products/get-product-by-id/${id}`
     );
 
     return response.data;
@@ -64,7 +64,7 @@ export const GetProductById = async (id) => {
 export const DeleteProduct = async (id) => {
   try {
     const response = await axiosInstance.delete(
-      `http://localhost:5000/api/products/delete-product/${id}`
+      `/api/products/delete-product/${id}`
     );
 
     return response.data;
@@ -77,7 +77,7 @@ export const DeleteProduct = async (id) => {
 export const UploadProductImage = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      `http://localhost:5000/api/products/upload-image-to-product`,
+      `/api/products/upload-image-to-product`,
       payload
     );
 
@@ -91,7 +91,7 @@ export const UploadProductImage = async (payload) => {
 export const UpdateProductStatus = async (id, status) => {
   try {
     const response = await axiosInstance.put(
-      `http://localhost:5000/api/products/update-product-status/${id}`,
+      `/api/products/update-product-status/${id}`,
       { status }
     );
 
@@ -105,7 +105,7 @@ export const UpdateProductStatus = async (id, status) => {
 export const PlaceNewBid = async (payload) => {
   try {
     const response = await axiosInstance.post(
-      `http://localhost:5000/api/bids/place-new-bid`,
+      `/api/bids/place-new-bid`,
       payload
     );
 
@@ -120,7 +120,7 @@ export const PlaceNewBid = async (payload) => {
 export const GetAllBids = async (filters) => {
   try {
     const response = await axiosInstance.post(
-      "http://localhost:5000/api/bids/get-all-bids",
+      "/api/bids/get-all-bids",
       filters
     );
     return response.data;

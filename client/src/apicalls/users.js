@@ -4,10 +4,7 @@ import { axiosInstance } from "./axiosInstance";
 
 export const RegisterUser = async (payload) => {
   try {
-    const response = await axiosInstance.post(
-      "http://localhost:5000/api/users/register",
-      payload
-    );
+    const response = await axiosInstance.post("/api/users/register", payload);
     return response.data;
   } catch (error) {
     return error.message;
@@ -30,9 +27,7 @@ export const LoginUser = async (payload) => {
 
 export const GetCurrentUser = async () => {
   try {
-    const response = await axiosInstance.get(
-      "http://localhost:5000/api/users/get-current-user"
-    );
+    const response = await axiosInstance.get("/api/users/get-current-user");
 
     return response.data;
   } catch (error) {
@@ -44,9 +39,7 @@ export const GetCurrentUser = async () => {
 
 export const GetAllUser = async () => {
   try {
-    const response = await axiosInstance.get(
-      "http://localhost:5000/api/users/get-all-users"
-    );
+    const response = await axiosInstance.get("/api/users/get-all-users");
 
     return response.data;
   } catch (error) {
@@ -59,7 +52,7 @@ export const GetAllUser = async () => {
 export const UpdateUserStatus = async (id, status) => {
   try {
     const response = await axiosInstance.put(
-      `http://localhost:5000/api/users/update-user-status/${id}`,
+      `/api/users/update-user-status/${id}`,
       { status }
     );
 
