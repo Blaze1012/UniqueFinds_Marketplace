@@ -94,47 +94,52 @@ function ProtectedPage({ children }) {
             </h1>
           </div>
 
-          <div className="flex bg-white py-2 px-5 rounded gap-2 items-center shadow-md">
-            {/* <i
+          <div className="flex gap-4">
+            <div className="bg-white py-2 px-5 rounded shadow-md items-center">
+              <span
+                className=" cursor-pointer uppercase mr-2"
+                onClick={() => {
+                  if (user.role === "user") navigate("/profile");
+                  else navigate("/admin");
+                }}
+              >
+                {user.name}{" "}
+              </span>
+
+              <Badge
+                count={
+                  notifications.filter((notification) => !notification.read)
+                    .length
+                }
+                className="cursor-pointer"
+                onClick={() => {
+                  readNotifications();
+                  setShowNotifications(true);
+                }}
+              >
+                <Avatar
+                  shape="circle"
+                  icon={<i className="ri-notification-2-line"></i>}
+                />
+              </Badge>
+            </div>
+            <div className="flex bg-white py-2 px-5 rounded gap-2 items-center shadow-md">
+              {/* <i
               className="ri-user-fill cursor-pointer"
               onClick={() => {
                 if (user.role === "user") navigate("/profile");
                 else navigate("/admin");
               }}
             ></i> */}
-            <span
-              className=" cursor-pointer uppercase mr-2"
-              onClick={() => {
-                if (user.role === "user") navigate("/profile");
-                else navigate("/admin");
-              }}
-            >
-              {user.name}{" "}
-            </span>
 
-            <Badge
-              count={
-                notifications.filter((notification) => !notification.read)
-                  .length
-              }
-              className="cursor-pointer"
-              onClick={() => {
-                readNotifications();
-                setShowNotifications(true);
-              }}
-            >
-              <Avatar
-                shape="circle"
-                icon={<i className="ri-notification-2-line"></i>}
-              />
-            </Badge>
-            <i
-              className="ri-logout-circle-r-line ml-10 cursor-pointer"
-              onClick={() => {
-                localStorage.removeItem("token");
-                navigate("/login");
-              }}
-            ></i>
+              <i
+                className="ri-logout-circle-r-line cursor-pointer"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  navigate("/login");
+                }}
+              ></i>
+            </div>
           </div>
         </div>
 
