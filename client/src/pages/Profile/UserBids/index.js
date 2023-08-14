@@ -70,6 +70,11 @@ function UserBids() {
   ];
   return (
     <div className="flex flex-col gap-3">
+      <span>
+        {bidsData.length > 0
+          ? ""
+          : "This tab shows the Bids placed by the user on various items.Place a bid on an item from Home Page to be showcased here"}
+      </span>
       <Table columns={columns} dataSource={bidsData}></Table>
     </div>
   );
