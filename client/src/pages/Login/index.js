@@ -23,7 +23,7 @@ function Login() {
       if (response.success) {
         message.success(response.message);
         localStorage.setItem("token", response.data);
-        navigate("/");
+        window.location.reload();
       } else throw new Error(response.message);
     } catch (error) {
       dispatch(SetLoader(false));
