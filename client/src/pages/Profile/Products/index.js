@@ -128,13 +128,14 @@ function Products() {
   ];
   return (
     <div>
-      <div className="flex justify-end mb-2">
+      <div className="flex justify-between mb-2">
         <span>
           {products.length > 0
             ? ""
             : "Add your products for sale from the Add Product button.First add the product then upload images from edit button."}
         </span>
         <Button
+          className="shadow-xl"
           type="primary"
           onClick={() => {
             setSelectedProduct(null);
