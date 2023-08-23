@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const dbConfig = require("./config/dbConfig");
 const app = express();
 const cors = require("cors");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const port = process.env.PORT || 5000;
 const UsersRoute = require("./routes/usersRoute");
 const ProductsRoute = require("./routes/productsRoute");
@@ -13,6 +13,7 @@ const NotificationsRoute = require("./routes/notificationsRoute");
 const oauthRoute = require("./routes/oauthRoute");
 const passport = require("passport");
 const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
 app.use(helmet());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
@@ -34,6 +35,7 @@ app.use("/api/notifications", NotificationsRoute);
 
 //deployment config
 const path = require("path");
+
 __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
