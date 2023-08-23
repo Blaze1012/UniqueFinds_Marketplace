@@ -14,7 +14,7 @@ const oauthRoute = require("./routes/oauthRoute");
 const passport = require("passport");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-app.use(helmet());
+// app.use(helmet());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );

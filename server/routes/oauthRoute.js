@@ -73,7 +73,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/failure",
-    successRedirect: "http://localhost:3000/",
+    successRedirect: "/",
     // sessions: true,
   }),
   (req, res) => {
