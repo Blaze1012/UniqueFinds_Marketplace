@@ -25,7 +25,8 @@ app.use(
 );
 // parse application/json
 app.use(bodyParser.json());
-
+app.use(cookieParser());
+app.use(oauthRoute);
 app.use("/api/users", UsersRoute);
 app.use("/api/products", ProductsRoute);
 app.use("/api/bids", BidsRoute);
