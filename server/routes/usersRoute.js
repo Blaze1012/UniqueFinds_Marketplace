@@ -122,6 +122,68 @@ router.get("/get-all-users", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/get-google-user", async (req, res) => {
+  try {
+    const myCookie = req.cookies;
+    if (myCookie.googleauthsession) {
+      console.log(`Value of myCookie:`, myCookie.googleauthsession);
+
+      const email = req.user.email;
+
+      const user = await User.findOne({ email: email });
+
+      // console.log(`USer fetched:`, user);
+      // if (!user) throw new Error("User not found");
+
+      const token = jwt.sign({ userId: user._id }, process.env.jwt_secret, {
+        // expiresIn: "1d",
+      });
+
+      res.send({
+        success: true,
+        message: "User Fetched successfully",
+        data: token,
+      });
+    }
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+    });
+    console.log(`Error Found: ${error}`);
+  }
+});
+
+router.get("/read-cookie", (req, res) => {
+  const myCookieName = "google-auth-session";
+  const myCookie = req.cookies; // Replace 'myCookieName' with your cookie name
+  if (myCookie) {
+    console.log(`Value of myCookie:`, myCookie);
+    res.send({
+      message: "ok",
+    });
+  } else {
+    res.send("Cookie not found");
+  }
+});
+
+//logout google user
+
+router.get("/google-logout", async (req, res) => {
+  try {
+    req.logout();
+    res.send({
+      success: true,
+      message: "Logged Out",
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+
 //update user status
 router.put("/update-user-status/:id", authMiddleware, async (req, res) => {
   try {

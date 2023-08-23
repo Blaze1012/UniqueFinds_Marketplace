@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { GetCurrentUser } from "../apicalls/users";
+import {
+  GetCurrentUser,
+  GetGoogleUser,
+  LogoutGoogleUser,
+} from "../apicalls/users";
 import { Avatar, Badge, Carousel, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +22,28 @@ function ProtectedPage({ children }) {
   const { user } = useSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const validateGoogleToken = async () => {
+    try {
+      dispatch(SetLoader(true));
+
+      const response = await GetGoogleUser();
+      dispatch(SetLoader(false));
+      if (response.success) {
+        localStorage.setItem("token", response.data);
+        // dispatch(SetUser(response.data));
+        // navigate("/");
+        window.location.reload();
+      } else {
+        navigate("/login");
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      dispatch(SetLoader(false));
+      navigate("/login");
+      message.error(error.message);
+    }
+  };
   const validateToken = async () => {
     try {
       dispatch(SetLoader(true));
@@ -65,8 +91,11 @@ function ProtectedPage({ children }) {
       validateToken();
       GetNotifications();
     } else {
-      navigate("/login");
-      message.error("Please Login to Continue");
+      validateGoogleToken();
+      if (!localStorage.getItem("token")) {
+        navigate("/login");
+        message.error("Please Login to Continue");
+      }
     }
   }, []);
 
@@ -87,7 +116,11 @@ function ProtectedPage({ children }) {
             />
             <h1
               className="text-2xl text-white cursor-pointer"
-              onClick={() => navigate("/")}
+              onClick={async () => {
+                const response = await LogoutGoogleUser();
+                localStorage.removeItem("token");
+                navigate("/");
+              }}
             >
               {" "}
               UniqueFinds

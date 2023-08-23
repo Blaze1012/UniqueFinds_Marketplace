@@ -5,6 +5,7 @@ import Divider from "../../components/Divider";
 import { LoginUser } from "../../apicalls/users";
 import { useDispatch } from "react-redux";
 import { SetLoader } from "../../redux/loadersSlice";
+import ContinueWithGoogleButton from "./GoogleAuth";
 
 const rules = [
   {
@@ -66,6 +67,7 @@ function Login() {
             </span>
           </div>
         </Form>
+        <ContinueWithGoogleButton />
       </div>
     </div>
   );

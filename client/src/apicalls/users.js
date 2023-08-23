@@ -61,3 +61,31 @@ export const UpdateUserStatus = async (id, status) => {
     return error.message;
   }
 };
+
+//get google user
+
+export const GetGoogleUser = async () => {
+  try {
+    const response = await axiosInstance.get("/api/users/get-google-user", {
+      withCredentials: true,
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+//logout google user
+
+export const LogoutGoogleUser = async () => {
+  try {
+    const response = await axiosInstance.get("/api/users/google-logout", {
+      withCredentials: true,
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};

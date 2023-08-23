@@ -10,6 +10,10 @@ const UsersRoute = require("./routes/usersRoute");
 const ProductsRoute = require("./routes/productsRoute");
 const BidsRoute = require("./routes/bidsRoute");
 const NotificationsRoute = require("./routes/notificationsRoute");
+const oauthRoute = require("./routes/oauthRoute");
+const passport = require("passport");
+const helmet = require("helmet");
+app.use(helmet());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
