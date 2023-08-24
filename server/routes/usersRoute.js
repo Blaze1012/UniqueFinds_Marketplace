@@ -133,7 +133,7 @@ router.get("/get-google-user", async (req, res) => {
       const user = await User.findOne({ email: email });
 
       // console.log(`USer fetched:`, user);
-      // if (!user) throw new Error("User not found");
+      if (!user) throw new Error("User not found");
 
       const token = jwt.sign({ userId: user._id }, process.env.jwt_secret, {
         // expiresIn: "1d",
@@ -143,6 +143,11 @@ router.get("/get-google-user", async (req, res) => {
         success: true,
         message: "User Fetched successfully",
         data: token,
+      });
+    } else {
+      res.send({
+        success: false,
+        message: "Google Authentication failed",
       });
     }
   } catch (error) {
