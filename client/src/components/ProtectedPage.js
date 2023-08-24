@@ -169,6 +169,7 @@ function ProtectedPage({ children }) {
                 className="ri-logout-circle-r-line cursor-pointer"
                 onClick={() => {
                   localStorage.removeItem("token");
+                  LogoutGoogleUser();
                   navigate("/login");
                 }}
               ></i>
